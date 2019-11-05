@@ -1,9 +1,0 @@
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\bin\Debug\netstandard2.0\Ingeco.Entity.deps.json
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\bin\Debug\netstandard2.0\Ingeco.Entity.dll
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\bin\Debug\netstandard2.0\Ingeco.Entity.pdb
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\obj\Debug\netstandard2.0\Ingeco.Entity.csprojAssemblyReference.cache
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\obj\Debug\netstandard2.0\Ingeco.Entity.csproj.CoreCompileInputs.cache
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\obj\Debug\netstandard2.0\Ingeco.Entity.AssemblyInfoInputs.cache
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\obj\Debug\netstandard2.0\Ingeco.Entity.AssemblyInfo.cs
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\obj\Debug\netstandard2.0\Ingeco.Entity.dll
-C:\Users\roloz\OneDrive\Desktop\Algoritmo Finanzas\Proyecto-Ingeco\Backend\Ingeco.Entity\obj\Debug\netstandard2.0\Ingeco.Entity.pdb
