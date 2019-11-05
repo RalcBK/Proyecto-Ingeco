@@ -9,8 +9,8 @@
             </v-toolbar>
             <v-card-text class="pb-0">
               <v-form>
-                <VTextFieldWithValidation rules="required|email" v-model="email" :counter="10" label="E-Mail" />
-                <VTextFieldWithValidation rules="required|min:6" v-model="password" :counter="10" label="Contraseña" />
+                <VTextFieldWithValidation rules="required|email" v-model="email" label="E-Mail" />
+                <VTextFieldWithValidation rules="required|min:6" v-model="password" label="Contraseña" />
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -31,6 +31,7 @@
 
 <script>
 import Vue from 'vue'
+import axios from 'axios'
 import VTextFieldWithValidation from '@/components/inputs/VTextFieldWithValidation';
 import {ValidationObserver} from "vee-validate";
 export default {
@@ -41,18 +42,27 @@ export default {
   },
   data: () => ({
     loading: false,
-    name : "",
     email: "",
-    password: "",
-    ruc: "",
+    password: ""
   }),
   methods: {
-    async submit() {
-      this.loading = true
-      await this.$store.dispatch('setUserIsLogin', { flag: true })
-      this.loading = false
-      this.$router.push('/inicio')
-    
+    submit() {
+      axios.post('https://reqres.in/api/login', {
+        email: this.email,
+        password: this.password
+      })
+      .then(async (response) => {
+        this.loading = true
+        //console.log(response)
+        await this.$store.dispatch('setUserIsLogin', { flag: true })
+        await this.$store.dispatch('setToken', { token: response.data.token })
+        //console.log(this.$store.state.token)
+        this.loading = false
+        this.$router.push('/pruebita')
+      })
+      .catch(function (error) {
+        console.log(error)
+      });
     }
   }
 };
