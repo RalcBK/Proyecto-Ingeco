@@ -1,10 +1,15 @@
 import Vue from 'vue'
-import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import './plugins/vuetify'
+import "@/validations/validators"
 
 import axios from 'axios'
+
+import Principal from './views/layouts/default.vue'
+
+Vue.component('default-layout', Principal)
 
 Vue.config.productionTip = false
 
