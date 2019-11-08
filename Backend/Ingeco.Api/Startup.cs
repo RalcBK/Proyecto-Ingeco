@@ -1,6 +1,9 @@
 ﻿using System.Text;
+using Ingeco.Repository;
 using Ingeco.Repository.context;
+using Ingeco.Repository.implementation;
 using Ingeco.Service;
+using Ingeco.Service.implementation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +31,24 @@ namespace Ingeco.Api
 
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddTransient<IBancoRepository, BancoRepository>();
+            services.AddTransient<IBancoService, BancoService>();
+
+            services.AddTransient<IClienteRepository, ClienteRepository>();
+            services.AddTransient<IClienteService, ClienteService>();
+
+            services.AddTransient<ICostoGastoRepository, CostoGastoRepository>();
+            services.AddTransient<ICostoGastoService, CostoGastoService>();
+
+            services.AddTransient<IDescuentoRepository, DescuentoRepository>();
+            services.AddTransient<IDescuentoService, DescuentoService>();
+
+            services.AddTransient<IFacturaRepository, FacturaRepository>();
+            services.AddTransient<IFacturaService, FacturaService>();
+
+            services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
