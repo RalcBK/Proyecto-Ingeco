@@ -105,6 +105,21 @@ const app = {
                     }
                 );
         },
+        addCliente({ dispatch, commit }, { obj }) {
+
+            userService.addCliente(obj)
+                .then(
+                    user => {
+                        commit('registerSuccess', user);
+                        router.push('/inicio')
+                    },
+                    error => {
+                        commit('registerFailure', error);
+                        alert("Error del servidor")
+
+                    }
+                );
+        },
         logout({ commit }) {
             userService.logout();
             commit('logout');

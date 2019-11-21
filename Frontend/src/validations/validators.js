@@ -20,6 +20,21 @@ extend('dinero', {
     }
 });
 
+extend('ruc', {
+    message: 'No es un RUC válido',
+    validate: value => {
+        if (value.substr(0, 2) !== '10' && value.substr(0, 2) !== '20') {
+            return false;
+        }
+
+        if (value.length !== 11) {
+            return false;
+        }
+
+        return true;
+    }
+});
+
 extend("length", {
     ...length,
     message: "Este campo debe tener {length} caracteres"

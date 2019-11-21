@@ -6,7 +6,8 @@ export const userService = {
     register,
     logout,
     addFactura,
-    getFacturas
+    getFacturas,
+    addCliente,
 };
 
 function login(username, password) {
@@ -96,6 +97,28 @@ function addFactura(userobj){
         });
 }
 
+function addCliente(userobj){
+
+    let token = authHeader();
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({
+            "RUC": userobj.RUC,
+            "RazonSocial": userobj.RazonSocial,
+            "NombreComercial": userobj.NombreComercial,
+            "DireccionFiscal": userobj.DireccionFiscal,
+        })
+    };
+
+    return fetch(`${config().apiUrl}/cliente`, requestOptions)
+        .then(handleResponse)
+        .then(item => {
+            return item;
+        });
+}
 function getFacturas(){
 
     let token = authHeader();
@@ -112,7 +135,6 @@ function getFacturas(){
             return item;
         });
 }
-
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);

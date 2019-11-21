@@ -15,6 +15,5 @@ namespace Ingeco.Entity
         public Factura Factura { get; set; }
         public int BancoId { get; set; }
         public Banco Banco { get; set; }
-        public IEnumerable<CostoGasto> CostosGastos { get; set; }
     }
 }

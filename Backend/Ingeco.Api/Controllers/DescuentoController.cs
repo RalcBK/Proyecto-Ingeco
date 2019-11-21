@@ -26,21 +26,22 @@ namespace Ingeco.Api.Controllers
             );
         }
 
-        [HttpGet("{id}")]
-        public ActionResult GetId(int id)
+        [HttpPut]
+        public ActionResult GetTotalTCEA()
         {
             return Ok(
-                descuentoService.Get(id)
+                descuentoService.getTceaTotal(Int32.Parse(User.Identity.Name))
             );
         }
 
+        
         [HttpPost]
         public ActionResult Post([FromBody] Descuento entity)
         {
             return Ok(
                 descuentoService.Save(entity)
             );
-        }
+      }
 
         [HttpDelete]
         public ActionResult Delete(int id)

@@ -60,6 +60,49 @@ namespace Ingeco.Repository.implementation
             return result;
         }
 
+        public IEnumerable<CostoGasto> getCostosFromDescuento(int descuentoId)
+        {
+            var result = new List<CostoGasto>();
+            try
+            {
+                result = context.CostosGastos.Where(x => x.DescuentoId == descuentoId).ToList();
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
+        public IEnumerable<CostoGasto> getCostosIniciales(int descuentoId)
+        {
+            var result = new List<CostoGasto>();
+            try
+            {
+                result = context.CostosGastos.Where(x => x.DescuentoId == descuentoId && x.Inicio == true).ToList();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+            return result;
+        }
+
+        public IEnumerable<CostoGasto> getCostosFinales(int descuentoId)
+        {
+            var result = new List<CostoGasto>();
+            try
+            {
+                result = context.CostosGastos.Where(x => x.DescuentoId == descuentoId && x.Inicio == false).ToList();
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+            return result;
+        }
+
         public bool Save(CostoGasto entity)
         {
             try

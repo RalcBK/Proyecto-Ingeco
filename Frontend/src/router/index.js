@@ -35,6 +35,12 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/registrofactura')
   },
   {
+    path: '/registro-cliente',
+    name: 'registro-cliente',
+    meta: { layout: 'default' ,title:'Registro de Cliente'},
+    component: () => import(/* webpackChunkName: "about" */ '@/views/registrocliente')
+  },
+  {
     path: '/listar-factura',
     name: 'listar-factura',
     meta: { layout: 'default' ,title:'Listado de Factura'},

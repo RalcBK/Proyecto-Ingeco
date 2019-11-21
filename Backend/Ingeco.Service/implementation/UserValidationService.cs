@@ -57,6 +57,7 @@ namespace Ingeco.Service.implementation
             usuario.Contraseña = password;
             usuario.Nombres = nombres;
             usuario.Apellidos = apellidos;
+            usuario.FechaRegistro = fecha;
             var flag = usuarioService.Save(usuario);
 
             if (flag)

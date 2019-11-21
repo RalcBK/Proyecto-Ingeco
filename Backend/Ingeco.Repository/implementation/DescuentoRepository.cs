@@ -94,6 +94,24 @@ namespace Ingeco.Repository.implementation
             }
         }
 
+        public float getTceaTotal(int usuarioId)
+        {
+            try
+            {
+                var result = context.Descuentos
+                .Include(t => t.Factura)
+                .Include(t => t.Banco)
+                .Where(x => x.Factura.UsuarioId == usuarioId)
+                .ToList();
+
+                return result.Sum(x => x.TCEA)/result.Count();
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public bool Save(Descuento entity)
         {
             try
