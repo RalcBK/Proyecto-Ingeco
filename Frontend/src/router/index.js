@@ -29,10 +29,16 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/loginusuario')
   },
   {
-    path: '/registro_factura',
-    name: 'registro_factura',
+    path: '/registro-factura',
+    name: 'registro-factura',
     meta: { layout: 'default' ,title:'Registro de Factura'},
     component: () => import(/* webpackChunkName: "about" */ '@/views/registrofactura')
+  },
+  {
+    path: '/listar-factura',
+    name: 'listar-factura',
+    meta: { layout: 'default' ,title:'Listado de Factura'},
+    component: () => import(/* webpackChunkName: "about" */ '@/views/listarfactura')
   },
 ]
 

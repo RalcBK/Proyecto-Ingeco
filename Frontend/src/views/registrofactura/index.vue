@@ -62,9 +62,6 @@ export default {
         this.$store.dispatch('addFactura', { obj: obj })
           
       },
-      idCliente: function(){
-          return this.$store.state.user.user.id;
-      },
       parseDate: function(date){
         let datan = date.split("-")
         return datan[1] + "-" + datan[2] +"-" +datan[0]

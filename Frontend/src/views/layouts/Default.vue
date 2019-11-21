@@ -24,6 +24,14 @@
       </v-btn>
       <v-btn
         text
+        @click="toListarFactura"
+        v-if="isLogin"
+      >
+        <span class="mr-2">Listar Facturas</span>
+        <v-icon>mdi-calendar-text-outline</v-icon>
+      </v-btn>
+      <v-btn
+        text
         @click="toRegistroFactura"
         v-if="isLogin"
       >
@@ -68,12 +76,14 @@ export default {
       this.$router.push('/login')
     },
     toRegistroFactura(){
-      this.$router.push('/registro_factura')
+      this.$router.push('/registro-factura')
     },
     toHome(){
       this.$router.push('/inicio')
     },
-    
+    toListarFactura(){
+      this.$router.push('/listar-factura')
+    },
   },
   computed:{
     isLogin(){

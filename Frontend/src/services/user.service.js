@@ -5,7 +5,8 @@ export const userService = {
     login,
     register,
     logout,
-    addFactura
+    addFactura,
+    getFacturas
 };
 
 function login(username, password) {
@@ -86,6 +87,23 @@ function addFactura(userobj){
             "FechaVencimiento": userobj.FechaVencimiento,
             "ClienteId": userobj.ClienteId
         })
+    };
+
+    return fetch(`${config().apiUrl}/factura`, requestOptions)
+        .then(handleResponse)
+        .then(item => {
+            return item;
+        });
+}
+
+function getFacturas(){
+
+    let token = authHeader();
+
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json',
+                   'Authorization': 'Bearer ' + token }
     };
 
     return fetch(`${config().apiUrl}/factura`, requestOptions)

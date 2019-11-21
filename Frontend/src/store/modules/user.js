@@ -37,6 +37,9 @@ const app = {
             state.status = {}; 
             state.user = null;
         },
+        addFacturas(state, items) {
+            state.facturas = [...items]
+        },
 
     },
     actions:{
@@ -76,8 +79,24 @@ const app = {
             userService.addFactura(obj)
                 .then(
                     user => {
-                        commit('registerSuccess', user);
                         router.push('/inicio')
+                        alert("Factura Agregada")
+                    },
+                    error => {
+                        commit('registerFailure', error);
+                        alert("Error del servidor")
+                        
+                    }
+                );
+        },
+        updateFacturas({ dispatch, commit }) {
+ 
+            userService.getFacturas()
+                .then(
+                    items => {
+                        commit('addFacturas', items);
+                        console.log("Facturas actualizadas")
+                        console.log(items)
                     },
                     error => {
                         commit('registerFailure', error);
