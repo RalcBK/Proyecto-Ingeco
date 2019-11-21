@@ -123,7 +123,6 @@ const app = {
                 );
         },
         updateClientes({ dispatch, commit }) {
- 
             userService.getClientes()
                 .then(
                     items => {
@@ -134,7 +133,6 @@ const app = {
                     error => {
                         commit('registerFailure', error);
                         alert("Error del servidor")
-                        
                     }
                 );
         },

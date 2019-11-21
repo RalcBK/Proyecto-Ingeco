@@ -136,7 +136,6 @@ function getFacturas(){
             return item;
         });
 }
-
 function getClientes(){
 
     let token = authHeader();
