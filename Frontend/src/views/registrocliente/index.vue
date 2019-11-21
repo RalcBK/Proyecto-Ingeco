@@ -9,7 +9,7 @@
                         </v-toolbar>
                         <v-card-text class="pb-0">
                             <v-form>
-                                <VBoxFieldWithValidation rules="required|ruc" :counter="11" v-model="ruc" label="RUC" />
+                                <VBoxFieldWithValidation rules="required|ruc|integer" :counter="11" v-model="ruc" label="RUC" />
                                 <VBoxFieldWithValidation rules="required" v-model="razonsocial" label="Razon Social" />
                                 <VBoxFieldWithValidation rules="required" v-model="nombrecomercial" label="Nombre Comercial" />
                                 <VBoxFieldWithValidation rules="required" v-model="direccionfiscal" label="Direccion Fiscal" />

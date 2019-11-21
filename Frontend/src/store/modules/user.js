@@ -40,6 +40,9 @@ const app = {
         addFacturas(state, items) {
             state.facturas = [...items]
         },
+        addClientes(state, items) {
+            state.clientes = [...items]
+        },
 
     },
     actions:{
@@ -111,12 +114,27 @@ const app = {
                 .then(
                     user => {
                         commit('registerSuccess', user);
-                        router.push('/inicio')
                     },
                     error => {
                         commit('registerFailure', error);
                         alert("Error del servidor")
 
+                    }
+                );
+        },
+        updateClientes({ dispatch, commit }) {
+ 
+            userService.getClientes()
+                .then(
+                    items => {
+                        commit('addClientes', items);
+                        console.log("Clientes actualizadas")
+                        console.log(items)
+                    },
+                    error => {
+                        commit('registerFailure', error);
+                        alert("Error del servidor")
+                        
                     }
                 );
         },

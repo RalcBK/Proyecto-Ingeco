@@ -9,6 +9,15 @@
                 </v-toolbar>
                 <v-card-text class="pb-0">
                 <v-form>
+                    <v-select
+                      v-model="clienteID"
+                      :items="catitems"
+                      item-text="nombreComercial"
+                      item-value="id"
+                      attach
+                      chips
+                      label="Seleccione el cliente"
+                  ></v-select>
                     <VBoxFieldWithValidation rules="required|integer" v-model="serie" label="Serie" />
                     <VBoxFieldWithValidation rules="required|integer" v-model="correlativo" :counter="10" label="Correlativo" />
                     <v-text-field label="Fecha de venta" v-model="fechaventa" type="date"></v-text-field>
@@ -42,12 +51,19 @@ export default {
         ValidationObserver
     },
     data: () => ({
+      clienteID: 0,
       serie: 0,
       correlativo: 0,
       fechaventa: null,
       monto: 0,
       fechavencimiento: null,
     }),
+    async created() {
+      var that = this;
+
+      await this.$store.dispatch('updateClientes')
+      
+    },
     methods: {
       submit(){
         let obj = {
@@ -56,7 +72,7 @@ export default {
                     FechaVenta: this.parseDate(this.fechaventa),
                     Monto: parseFloat(this.monto),
                     FechaVencimiento: this.parseDate(this.fechavencimiento),
-                    ClienteId: 1
+                    ClienteId: this.clienteID,
                   }
         console.log(obj)
         this.$store.dispatch('addFactura', { obj: obj })
@@ -68,7 +84,9 @@ export default {
       }
     },
     computed: {
-      
+      catitems: function(){
+          return this.$store.state.user.clientes;
+      }
   },
 }
 </script>
