@@ -27,6 +27,16 @@ namespace Ingeco.Service.implementation
             return usuarioRepository.GetAll();
         }
 
+        public Usuario getByEmail(string email)
+        {
+            return usuarioRepository.getByEmail(email);
+        }
+
+        public Usuario logIn(string email, string contraseña)
+        {
+            return usuarioRepository.logIn(email, contraseña);
+        }
+
         public bool Save(Usuario entity)
         {
             return usuarioRepository.Save(entity);

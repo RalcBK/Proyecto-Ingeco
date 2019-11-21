@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Ingeco.Entity;
@@ -60,6 +61,62 @@ namespace Ingeco.Repository.implementation
             return result;
         }
 
+        public Usuario getByEmail(string email)
+        {
+            var result = new Usuario();
+            try
+            {
+                result = context.Usuarios.SingleOrDefault(x => x.Email == email);
+            }
+            catch (System.Exception)
+            {
+                Console.WriteLine("Error en getByEmail de repositorio");
+                throw;
+            }
+            if (result != null)
+            {
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public Usuario logIn(string email, string contraseña)
+        {
+            var result = new Usuario();
+
+            try
+            {
+                result = context.Usuarios.SingleOrDefault(x => x.Email == email);
+            }
+            catch (System.Exception)
+            {
+                Console.WriteLine("Error en logIn de repositorio");
+                Console.WriteLine(result);
+                throw;
+            }
+
+            if (result != null)
+            {
+                if(result.Contraseña != contraseña)
+                {
+                    Console.WriteLine("Contraseña incorrecta");
+                    return null;
+                }
+                else
+                {
+                    return result;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Email incorrecto");
+                return result;
+            }
+        }
+
         public bool Save(Usuario entity)
         {
             try
@@ -73,6 +130,7 @@ namespace Ingeco.Repository.implementation
             }
             return true;
         }
+
 
         public bool Update(Usuario entity)
         {

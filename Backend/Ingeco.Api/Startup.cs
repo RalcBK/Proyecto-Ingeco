@@ -50,6 +50,8 @@ namespace Ingeco.Api
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<IUsuarioService, UsuarioService>();
 
+            services.AddTransient<IUserValidationService, UserValidationService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // configure strongly typed settings objects
@@ -77,8 +79,6 @@ namespace Ingeco.Api
                     };
                 });
 
-            // configure DI for application services
-            services.AddScoped<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,6 +100,7 @@ namespace Ingeco.Api
                 .AllowAnyHeader());
 
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }

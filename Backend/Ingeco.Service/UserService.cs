@@ -14,9 +14,10 @@ namespace Ingeco.Service
     {
         User Authenticate(string username, string password);
         IEnumerable<User> GetAll();
+        object logIn(string email, string password);
     }
 
-    public class UserService : IUserService
+    public class UserService
     {
         private readonly AppSettings _appSettings;
 
