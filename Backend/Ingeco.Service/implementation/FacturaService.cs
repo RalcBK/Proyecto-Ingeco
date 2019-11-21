@@ -27,6 +27,11 @@ namespace Ingeco.Service.implementation
             return facturaRepository.GetAll();
         }
 
+        public IEnumerable<Factura> getFacturasByUserId(int userId)
+        {
+            return facturaRepository.getFacturasByUserId(userId);
+        }
+
         public bool Save(Factura entity)
         {
             return facturaRepository.Save(entity);

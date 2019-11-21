@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline">
-        <span @click="toHome">Verdurapp</span>
+        <span @click="toHome">ProFactoring</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
 

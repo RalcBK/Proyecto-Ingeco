@@ -32,9 +32,8 @@ namespace Ingeco.Service.implementation
             {
                 Subject = new ClaimsIdentity(new Claim[] 
                 {
-                    new Claim("id", user.Id.ToString()),
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Name, user.Nombres)
+                    new Claim(ClaimTypes.Name, user.Id.ToString())
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), 
@@ -68,9 +67,8 @@ namespace Ingeco.Service.implementation
                 {
                     Subject = new ClaimsIdentity(new Claim[]
                     {
-                    new Claim("id", user.Id.ToString()),
                     new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Name, user.Nombres)
+                    new Claim(ClaimTypes.Name, user.Id.ToString())
                     }),
                     Expires = DateTime.UtcNow.AddDays(7),
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),

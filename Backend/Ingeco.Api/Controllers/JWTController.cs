@@ -23,10 +23,10 @@ namespace Ingeco.Api.Controllers
             {
                 return BadRequest(new
                 {
-                    message = "UserName or Password is invalid"
+                    message = "Email or Password is invalid"
                 });
             }
-            return Ok(user.Token);
+            return Ok(user);
         }
 
         [AllowAnonymous]
@@ -38,10 +38,10 @@ namespace Ingeco.Api.Controllers
             {
                 return BadRequest(new
                 {
-                    message = "Something went wrong on signIn"
+                    message = "Email or Password is invalid"
                 });
             }
-            return Ok(user.Token);
+            return Ok(user);
         }
     }
 }

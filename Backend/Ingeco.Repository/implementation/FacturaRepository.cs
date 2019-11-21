@@ -60,6 +60,21 @@ namespace Ingeco.Repository.implementation
             return result;
         }
 
+        public IEnumerable<Factura> getFacturasByUserId(int userId)
+        {
+            var result = new List<Factura>();
+            try
+            {
+                result = context.Facturas.Where(x=> x.UsuarioId == userId).ToList();
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
         public bool Save(Factura entity)
         {
             try
