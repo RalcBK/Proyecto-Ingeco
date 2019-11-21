@@ -24,6 +24,22 @@
       </v-btn>
       <v-btn
         text
+        @click="toListarCliente"
+        v-if="isLogin"
+      >
+        <span class="mr-2">Listar Clientes</span>
+        <v-icon>mdi-calendar-text-outline</v-icon>
+      </v-btn>
+      <v-btn
+        text
+        @click="toRegistroCliente"
+        v-if="isLogin"
+      >
+        <span class="mr-2">Registro Clientes</span>
+        <v-icon>mdi-calendar-text-outline</v-icon>
+      </v-btn>
+      <v-btn
+        text
         @click="toListarFactura"
         v-if="isLogin"
       >
@@ -83,6 +99,12 @@ export default {
     },
     toListarFactura(){
       this.$router.push('/listar-factura')
+    },
+    toListarCliente(){
+      this.$router.push('/listar-cliente')
+    },
+    toRegistroCliente(){
+      this.$router.push('/registro-cliente')
     },
   },
   computed:{

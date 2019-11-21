@@ -34,24 +34,7 @@
     export default {
         name: "index",
 
-        data() {
-            return {
-                headers: [
-                    {text: 'RUC'},
-                    {text: 'Razón Social'},
-                    {text: 'Nombre Comercial'},
-                    {text: 'Dirección Fiscal'},
-                ],
-                clientes: [
-                    {
-                        ruc: '20123456789',
-                        razon_social: 'UPC S.A.C.',
-                        nombre_comercial: 'UPC S.A.C.',
-                        direccion_fiscal: 'Av. Primavera 2390',
-                    }
-                ]
-            }
-        },
+       
 
         data: () => ({
             headers: [
@@ -63,9 +46,9 @@
                 },
 
                 { text: 'RUC', value: 'ruc' },
-                { text: 'Razón Social', value: 'razonsocial' },
-                { text: 'Nombre Comercial', value: 'nombrecomercial' },
-                { text: 'Direccion Fiscal', value: 'direccionfiscal' },
+                { text: 'Razón Social', value: 'razonSocial' },
+                { text: 'Nombre Comercial', value: 'nombreComercial' },
+                { text: 'Direccion Fiscal', value: 'domicilioFiscal' },
             ],
             items: [],
         }),
