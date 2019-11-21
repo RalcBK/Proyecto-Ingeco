@@ -47,16 +47,22 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '@/views/listarfactura')
   },
   {
-        path: '/listar-cliente',
-        name: 'listar-cliente',
-        meta: { layout: 'default' ,title:'Listado de Cliente'},
-        component: () => import(/* webpackChunkName: "about" */ '@/views/listarcliente')
+    path: '/listar-cliente',
+    name: 'listar-cliente',
+    meta: { layout: 'default' ,title:'Listado de Cliente'},
+    component: () => import(/* webpackChunkName: "about" */ '@/views/listarcliente')
   },
   {
     path: '/listar-descuento',
     name: 'listar-descuento',
     meta: { layout: 'default', title: 'Listado de Descuento' },
     component: () => import(/* webpackChunkName: "home" */'@/views/listarDescuento'),
+  },
+  {
+    path: '/registro-descuento',
+    name: 'registro-descuento',
+    meta: { layout: 'default', title: 'Registro de Descuento' },
+    component: () => import(/* webpackChunkName: "home" */'@/views/descontarFactura'),
   },
 ]
 

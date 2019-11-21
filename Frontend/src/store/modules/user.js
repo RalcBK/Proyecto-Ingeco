@@ -46,6 +46,9 @@ const app = {
         addDescuentos(state, items) {
             state.descuentos = [...items]
         },
+        updateDescuentos(state, items) {
+            state.descuentos = [...items]
+        },
     },
     actions:{
         login({ dispatch, commit }, { username, password }) {
@@ -135,6 +138,20 @@ const app = {
                     error => {
                         commit('registerFailure', error);
                         alert("Error del servidor")
+                    }
+                );
+        },
+        addDescuento({ dispatch, commit }, { obj }) {
+
+            userService.addDescuento(obj)
+                .then(
+                    user => {
+                        commit('registerSuccess', user);
+                    },
+                    error => {
+                        commit('registerFailure', error);
+                        alert("Error del servidor")
+
                     }
                 );
         },

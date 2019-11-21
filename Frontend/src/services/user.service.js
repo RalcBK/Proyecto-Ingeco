@@ -9,7 +9,8 @@ export const userService = {
     getFacturas,
     addCliente,
     getClientes,
-    getDescuentos
+    getDescuentos,
+    addDescuento,
 };
 
 function login(username, password) {
@@ -164,6 +165,32 @@ function getDescuentos(){
         .then(handleResponse)
         .then(item => {
             return item
+        });
+}
+function addDescuento(userobj) {
+    let token = authHeader();
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        body: JSON.stringify({
+            "Fecha": userobj.Fecha,
+            "Tasa": userobj.Tasa,
+            "MontoDescontado": userobj.MontoDescontado,
+            "TEA": userobj.TEA,
+            "TCEA": userobj.TCEA,
+            "FacturaId": userobj.FacturaId,
+            "BancoId": userobj.BancoId
+        })
+    };
+
+    return fetch(`${config().apiUrl}/descuento`, requestOptions)
+        .then(handleResponse)
+        .then(item => {
+            return item;
         });
 }
 function handleResponse(response) {
