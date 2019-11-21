@@ -18,6 +18,7 @@
                     <v-container>
                         <v-row no-gutters>
                         <v-col class="text-center">
+                            <v-text-field label="TCEA de la cartera" v-model="TCEACartera" type="text" disabled filled></v-text-field>
                         </v-col>
                         </v-row>
                     </v-container>
@@ -52,18 +53,28 @@ export default {
         items: [],
     }),
     async created() {
-      var that = this;
-
-      await this.$store.dispatch('updateDescuentos')
-      
-    },
-    methods: {
+        await this.$store.dispatch('updateDescuentos')
 
     },
     computed: {
       descuentosItems: function(){
           return this.$store.state.user.descuentos;
-      }
+      },
+
+        TCEACartera() {
+          let total_tcea = 0;
+          let cantidad = this.items.length;
+
+          if (cantidad === 0) {
+              return 0 + '%';
+          }
+
+          this.items.forEach(descuento => {
+              total_tcea += descuento.tcea;
+          });
+
+          return (total_tcea / cantidad).toFixed(7) + '%';
+        },
   },
 }
 </script>
