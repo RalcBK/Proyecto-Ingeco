@@ -7,5 +7,6 @@ namespace Ingeco.Repository
     public interface IDescuentoRepository : IRepository<Descuento>
     {
         IEnumerable<DescuentoDto> getDescuentosFromFactura(int usuarioId);
+        float getTceaTotal(int usuarioId);
     }
 }

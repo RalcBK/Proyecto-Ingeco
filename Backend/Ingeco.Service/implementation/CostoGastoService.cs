@@ -27,6 +27,21 @@ namespace Ingeco.Service.implementation
             return costoGastoRepository.GetAll();
         }
 
+        public IEnumerable<CostoGasto> getCostosFinales(int descuentoId)
+        {
+            return costoGastoRepository.getCostosFinales(descuentoId);
+        }
+
+        public IEnumerable<CostoGasto> getCostosFromDescuento(int descuentoId)
+        {
+            return costoGastoRepository.getCostosFromDescuento(descuentoId);
+        }
+
+        public IEnumerable<CostoGasto> getCostosIniciales(int descuentoId)
+        {
+            return costoGastoRepository.getCostosIniciales(descuentoId);
+        }
+
         public bool Save(CostoGasto entity)
         {
             return costoGastoRepository.Save(entity);

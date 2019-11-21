@@ -37,6 +37,11 @@ namespace Ingeco.Service.implementation
             return descuentoRepository.getDescuentosFromFactura(userId);
         }
 
+        public float getTceaTotal(int usuarioId)
+        {
+            return descuentoRepository.getTceaTotal(usuarioId);
+        }
+
         public bool Save(Descuento entity)
         {
             return descuentoRepository.Save(entity);

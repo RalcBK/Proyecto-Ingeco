@@ -7,5 +7,6 @@ namespace Ingeco.Service
     public interface IDescuentoService:IService<Descuento>
     {
         IEnumerable<DescuentoDto> getDescuentosFromFactura(int userId);
+        float getTceaTotal(int usuarioId);
     }
 }
