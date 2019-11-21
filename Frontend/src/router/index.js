@@ -28,6 +28,12 @@ const routes = [
     meta: { layout: 'default' ,title:'Login'},
     component: () => import(/* webpackChunkName: "about" */ '@/views/loginusuario')
   },
+  {
+    path: '/registro_factura',
+    name: 'registro_factura',
+    meta: { layout: 'default' ,title:'Registro de Factura'},
+    component: () => import(/* webpackChunkName: "about" */ '@/views/registrofactura')
+  },
 ]
 
 const router = new VueRouter({
