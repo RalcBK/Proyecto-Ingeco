@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Ingeco.Entity;
 using Ingeco.Repository.context;
+using Ingeco.Repository.dto;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ingeco.Repository.implementation
 {
@@ -58,6 +60,38 @@ namespace Ingeco.Repository.implementation
                 throw;
             }
             return result;
+        }
+
+        public IEnumerable<DescuentoDto> getDescuentosFromFactura(int usuarioId)
+        {
+            try
+            {
+                var result = context.Descuentos
+                .Include(t => t.Factura)
+                .Include(t => t.Banco)
+                .Where(x => x.Factura.UsuarioId == usuarioId)
+                .ToList();
+
+                return result.Select(o => new DescuentoDto
+                {
+                    Id = o.Id,
+                    Fecha = o.Fecha,
+                    Tasa = o.Tasa,
+                    MontoDescontado = o.MontoDescontado,
+                    TEA = o.TEA,
+                    TCEA = o.TCEA,
+                    FacturaId = o.FacturaId,
+                    Factura = o.Factura,
+                    Serie = o.Factura.Serie,
+                    BancoId = o.BancoId,
+                    Banco = o.Banco,
+                    NombreBanco = o.Banco.Nombre
+                });
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
         }
 
         public bool Save(Descuento entity)

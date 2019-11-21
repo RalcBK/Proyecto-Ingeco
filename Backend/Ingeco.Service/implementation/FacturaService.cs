@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Ingeco.Entity;
 using Ingeco.Repository;
+using Ingeco.Repository.dto;
 
 namespace Ingeco.Service.implementation
 {
@@ -27,7 +28,7 @@ namespace Ingeco.Service.implementation
             return facturaRepository.GetAll();
         }
 
-        public IEnumerable<Factura> getFacturasByUserId(int userId)
+        public IEnumerable<FacturaDto> getFacturasByUserId(int userId)
         {
             return facturaRepository.getFacturasByUserId(userId);
         }
