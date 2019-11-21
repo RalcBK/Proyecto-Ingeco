@@ -1,3 +1,4 @@
+using System;
 using Ingeco.Entity;
 using Ingeco.Service;
 using Microsoft.AspNetCore.Authorization;
@@ -21,8 +22,7 @@ namespace Ingeco.Api.Controllers
         public ActionResult Get()
         {
             return Ok(
-                descuentoService.GetAll()
-
+                descuentoService.getDescuentosFromFactura(Int32.Parse(User.Identity.Name))
             );
         }
 

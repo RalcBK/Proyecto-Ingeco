@@ -39,3 +39,12 @@ extend("email", {
   ...email,
   message: "Este campo debe tener un email válido"
 });
+
+extend('string', {
+  message: 'No puede contener números',
+  validate: value => {
+      let patt = /^\[a-zA-Z]+$/
+      
+      return patt.test(value)
+  }
+});

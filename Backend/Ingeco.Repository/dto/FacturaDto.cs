@@ -1,9 +1,9 @@
 using System;
+using Ingeco.Entity;
 
-
-namespace Ingeco.Entity
+namespace Ingeco.Repository.dto
 {
-    public class Factura
+    public class FacturaDto
     {
         public int Id { get; set; }
         public string Serie { get; set; }
@@ -15,6 +15,6 @@ namespace Ingeco.Entity
         public Usuario Usuario { get; set; }
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; }
-        
+        public string NombreCliente { get; set; }
     }
 }

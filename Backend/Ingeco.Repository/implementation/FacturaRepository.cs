@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Ingeco.Entity;
 using Ingeco.Repository.context;
+using Ingeco.Repository.dto;
+using Microsoft.EntityFrameworkCore;
 
 namespace Ingeco.Repository.implementation
 {
@@ -60,19 +62,31 @@ namespace Ingeco.Repository.implementation
             return result;
         }
 
-        public IEnumerable<Factura> getFacturasByUserId(int userId)
+        public IEnumerable<FacturaDto> getFacturasByUserId(int userId)
         {
-            var result = new List<Factura>();
             try
             {
-                result = context.Facturas.Where(x=> x.UsuarioId == userId).ToList();
+                var result = context.Facturas.Include(t => t.Cliente).Where(x => x.UsuarioId == userId).ToList();
+                return result.Select(o => new FacturaDto
+                {
+                    Id = o.Id,
+                    Serie = o.Serie,
+                    Correlativo = o.Correlativo,
+                    FechaVenta = o.FechaVenta,
+                    Monto = o.Monto,
+                    FechaVencimiento = o.FechaVencimiento,
+                    UsuarioId = o.UsuarioId,
+                    Usuario = o.Usuario,
+                    ClienteId = o.ClienteId,
+                    Cliente = o.Cliente,
+                    NombreCliente = o.Cliente.NombreComercial
+                });
             }
             catch (System.Exception)
             {
 
                 throw;
             }
-            return result;
         }
 
         public bool Save(Factura entity)
