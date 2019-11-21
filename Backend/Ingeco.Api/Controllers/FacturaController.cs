@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Ingeco.Entity;
 using Ingeco.Service;
 using Microsoft.AspNetCore.Authorization;
@@ -21,7 +23,7 @@ namespace Ingeco.Api.Controllers
         public ActionResult Get()
         {
             return Ok(
-                facturaService.GetAll()
+                facturaService.getFacturasByUserId(Int32.Parse(User.Identity.Name))
 
             );
         }
@@ -37,6 +39,11 @@ namespace Ingeco.Api.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] Factura entity)
         {
+            Console.WriteLine("Asignando ID");
+            Console.WriteLine(User.Identity.Name);
+            entity.UsuarioId = Int32.Parse(User.Identity.Name);
+            Console.WriteLine("Asigno bien");
+            Console.WriteLine(entity.UsuarioId);
             return Ok(
                 facturaService.Save(entity)
             );
