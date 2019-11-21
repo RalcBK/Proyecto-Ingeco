@@ -1,17 +1,79 @@
+import { userService } from '@/services';
+import { router } from '@/router'
+
+const user = JSON.parse(localStorage.getItem('user'));
+const initialState = user
+    ? { status: { loggedIn: true }, user }
+    : { status: {}, user: null };
+
 const app = {
-    state: {
-        userIsLogin: false,
-        rol: 2,
-    },
+    state: initialState,
     mutations:{
-        SET_USERISLOGIN:(state,flag) =>{
-            state.userIsLogin = flag
-        }
+        loginRequest(state, user) {
+            state.status = { loggingIn: true };
+            state.user = user;
+        },
+        loginSuccess(state, user) {
+            state.status = { loggedIn: true };
+            state.user = user;
+        },
+        loginFailure(state) {
+            state.status = {};
+            state.user = null;
+        },
+        registerRequest(state, user) {
+            state.status = { loggingIn: true };
+            state.user = user;
+        },
+        registerSuccess(state, user) {
+            state.status = { loggedIn: true };
+            state.user = user;
+        },
+        registerFailure(state) {
+            state.status = {};
+            state.user = null;
+        },
+        logout(state) {
+            state.status = {}; 
+            state.user = null;
+        },
+
     },
     actions:{
-        setUserIsLogin({commit},{flag}){
-            commit('SET_USERISLOGIN',flag)
-        }
+        login({ dispatch, commit }, { username, password }) {
+            commit('loginRequest', { username });
+
+            userService.login(username, password)
+                .then(
+                    user => {
+                        commit('loginSuccess', user);
+                    },
+                    error => {
+                        commit('loginFailure', error);
+                        alert("Error en el logeo")
+                    }
+                );
+        },
+        register({ dispatch, commit }, { username, password, email }) {
+            commit('registerRequest', { username });
+
+            userService.register(username, password, email)
+                .then(
+                    user => {
+                        commit('registerSuccess', user);
+                        alert("Registro completado")
+                    },
+                    error => {
+                        commit('registerFailure', error);
+                        alert("Registro incorrecto")
+                        
+                    }
+                );
+        },
+        logout({ commit }) {
+            userService.logout();
+            commit('logout');
+        } 
     }
 }
 
