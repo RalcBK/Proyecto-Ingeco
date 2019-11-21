@@ -53,7 +53,7 @@ export default {
   methods: {
     async submit() {
       let d = new Date();
-      let strFecha = (d.getMonth()+1).toString() + "-" + d.getDay().toString() + "-" + d.getFullYear().toString();
+      let strFecha = (d.getMonth()+1).toString() + "-" + d.getDate().toString() + "-" + d.getFullYear().toString();
       let obj = {
             Email: this.email,
             Contraseña: this.password,

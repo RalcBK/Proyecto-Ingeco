@@ -22,7 +22,14 @@
         <span class="mr-2">Registrar</span>
         <v-icon>mdi-account-plus</v-icon>
       </v-btn>
-
+      <v-btn
+        text
+        @click="toRegistroFactura"
+        v-if="isLogin"
+      >
+        <span class="mr-2">Registro Factura</span>
+        <v-icon>mdi-calendar-text-outline</v-icon>
+      </v-btn>
       <v-btn
         text
         @click="toLogout"
@@ -59,6 +66,9 @@ export default {
     toLogout(){
       this.$store.dispatch('logout')
       this.$router.push('/login')
+    },
+    toRegistroFactura(){
+      this.$router.push('/registro_factura')
     },
     toHome(){
       this.$router.push('/inicio')

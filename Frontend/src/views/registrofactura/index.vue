@@ -1,7 +1,7 @@
 <template>
   <v-container fluid fill-height>
     <v-layout align-center justify-center>
-      <v-flex xs12 sm4 md4>
+      <v-flex xs12 sm8 md6>
         <ValidationObserver ref="obs" v-slot="{ invalid, validated, passes, validate }">
             <v-card class="elevation-12">
                 <v-toolbar dark color="primary">
@@ -9,24 +9,21 @@
                 </v-toolbar>
                 <v-card-text class="pb-0">
                 <v-form>
-                    <VBoxFieldWithValidation rules="required" v-model="serie" label="Serie" />
-                    <VBoxFieldWithValidation rules="required|integer|length:10" v-model="ruc" :counter="10" label="Correlativo" />
+                    <VBoxFieldWithValidation rules="required|integer" v-model="serie" label="Serie" />
+                    <VBoxFieldWithValidation rules="required|integer" v-model="correlativo" :counter="10" label="Correlativo" />
                     <v-text-field label="Fecha de venta" v-model="fechaventa" type="date"></v-text-field>
-                    <VBoxFieldWithValidation rules="required" v-model="descripcion" label="Monto" />
+                    <VBoxFieldWithValidation rules="required|dinero" v-model="monto" label="Monto" />
                     <v-text-field label="Fecha de vencimiento" v-model="fechavencimiento" type="date"></v-text-field>
                 </v-form>
                 </v-card-text>
                 <v-card-actions>
                 <v-container>
-                    <v-row no-gutters>
-                    <v-col class="text-center">
-                        <v-btn color="primary" @click="" >Cancelar</v-btn>
-                    </v-col>
-                    <v-col class="text-center">
-                        <v-btn color="primary" @click="" >Guardar</v-btn>
-                    </v-col>
-                    </v-row>
-                </v-container>
+                <v-row no-gutters>
+                  <v-col class="text-center">
+                    <v-btn color="primary" block large @click="passes(submit)" :disabled="invalid || !validated">Agregar Factura</v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
                 </v-card-actions>
             </v-card>
         </ValidationObserver>
@@ -45,10 +42,36 @@ export default {
         ValidationObserver
     },
     data: () => ({
-
+      serie: 0,
+      correlativo: 0,
+      fechaventa: null,
+      monto: 0,
+      fechavencimiento: null,
     }),
     methods: {
-        
-    }
+      submit(){
+        let obj = {
+                    Serie: this.serie.toString(),
+                    Correlativo: this.correlativo.toString(),
+                    FechaVenta: this.parseDate(this.fechaventa),
+                    Monto: parseFloat(this.monto),
+                    FechaVencimiento: this.parseDate(this.fechavencimiento),
+                    ClienteId: 1
+                  }
+        console.log(obj)
+        this.$store.dispatch('addFactura', { obj: obj })
+          
+      },
+      idCliente: function(){
+          return this.$store.state.user.user.id;
+      },
+      parseDate: function(date){
+        let datan = date.split("-")
+        return datan[1] + "-" + datan[2] +"-" +datan[0]
+      }
+    },
+    computed: {
+      
+  },
 }
 </script>

@@ -4,7 +4,8 @@ import { authHeader } from '@/helpers';
 export const userService = {
     login,
     register,
-    logout
+    logout,
+    addFactura
 };
 
 function login(username, password) {
@@ -61,12 +62,37 @@ function register(userobj){
         .then(handleResponse)
         .then(user => {
             console.log(user)
-
+            localStorage.setItem('user', JSON.stringify(user)); 
             return user;
         });
 }
 function logout() {
     localStorage.removeItem('user');
+}
+
+function addFactura(userobj){
+
+    let token = authHeader();
+
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+                   'Authorization': 'Bearer ' + token },
+        body: JSON.stringify({
+            "Serie": userobj.Serie,
+            "Correlativo": userobj.Correlativo,
+            "FechaVenta": userobj.FechaVenta,
+            "Monto": userobj.Monto,
+            "FechaVencimiento": userobj.FechaVencimiento,
+            "ClienteId": userobj.ClienteId
+        })
+    };
+
+    return fetch(`${config().apiUrl}/factura`, requestOptions)
+        .then(handleResponse)
+        .then(item => {
+            return item;
+        });
 }
 
 function handleResponse(response) {
