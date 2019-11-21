@@ -43,7 +43,7 @@ export default {
           },
           { text: 'Fecha', value: 'fecha' },
           { text: 'Tasa', value: 'tasa' },
-          { text: 'Monto', value: 'monto' },
+          { text: 'MontoDescontado', value: 'montoDescontado' },
           { text: 'TEA', value: 'tea' },
           { text: 'TCEA', value: 'tcea' },
           { text: 'Factura', value: 'serie' },
