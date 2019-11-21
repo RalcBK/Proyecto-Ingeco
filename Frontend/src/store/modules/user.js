@@ -43,7 +43,9 @@ const app = {
         addClientes(state, items) {
             state.clientes = [...items]
         },
-
+        addDescuentos(state, items) {
+            state.descuentos = [...items]
+        },
     },
     actions:{
         login({ dispatch, commit }, { username, password }) {
@@ -129,6 +131,18 @@ const app = {
                         commit('addClientes', items);
                         console.log("Clientes actualizadas")
                         console.log(items)
+                    },
+                    error => {
+                        commit('registerFailure', error);
+                        alert("Error del servidor")
+                    }
+                );
+        },
+        updateDescuentos({ dispatch, commit }) {
+            userService.getDescuentos()
+                .then(
+                    items => {
+                        commit('addDescuentos', items);
                     },
                     error => {
                         commit('registerFailure', error);

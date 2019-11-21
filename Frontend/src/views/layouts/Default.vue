@@ -56,11 +56,19 @@
       </v-btn>
       <v-btn
         text
+        @click="toListarDescuento"
+        v-if="isLogin"
+      >
+        <span class="mr-2">Listar Descuentos</span>
+        <v-icon>mdi-calendar-text-outline</v-icon>
+      </v-btn>
+      <v-btn
+        text
         @click="toLogout"
         v-if="isLogin"
       >
         <span class="mr-2">Salir</span>
-        <v-icon>mdi-account-plus</v-icon>
+        <v-icon>mdi-account-less</v-icon>
       </v-btn>
     </v-app-bar>
     
@@ -105,6 +113,9 @@ export default {
     },
     toRegistroCliente(){
       this.$router.push('/registro-cliente')
+    },
+    toListarDescuento(){
+      this.$router.push('/listar-descuento')
     },
   },
   computed:{

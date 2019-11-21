@@ -8,7 +8,8 @@ export const userService = {
     addFactura,
     getFacturas,
     addCliente,
-    getClientes
+    getClientes,
+    getDescuentos
 };
 
 function login(username, password) {
@@ -150,6 +151,19 @@ function getClientes(){
         .then(handleResponse)
         .then(item => {
             return item;
+        });
+}
+function getDescuentos(){
+    let token = authHeader();
+    const requestOptions = {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json',
+                    'Authorization': 'Bearer' + token }
+    };
+    return fetch(`${config().apiUrl}/descuento`, requestOptions)
+        .then(handleResponse)
+        .then(item => {
+            return item
         });
 }
 function handleResponse(response) {

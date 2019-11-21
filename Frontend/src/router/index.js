@@ -46,12 +46,18 @@ const routes = [
     meta: { layout: 'default' ,title:'Listado de Factura'},
     component: () => import(/* webpackChunkName: "about" */ '@/views/listarfactura')
   },
-    {
+  {
         path: '/listar-cliente',
         name: 'listar-cliente',
         meta: { layout: 'default' ,title:'Listado de Cliente'},
         component: () => import(/* webpackChunkName: "about" */ '@/views/listarcliente')
-    },
+  },
+  {
+    path: '/listar-descuento',
+    name: 'listar-descuento',
+    meta: { layout: 'default', title: 'Listado de Descuento' },
+    component: () => import(/* webpackChunkName: "home" */'@/views/listarDescuento'),
+  },
 ]
 
 const router = new VueRouter({
