@@ -158,7 +158,7 @@ function getDescuentos(){
     const requestOptions = {
         method: 'GET',
         headers: { 'Content-Type': 'application/json',
-                    'Authorization': 'Bearer' + token }
+                    'Authorization': 'Bearer ' + token }
     };
     return fetch(`${config().apiUrl}/descuento`, requestOptions)
         .then(handleResponse)

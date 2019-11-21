@@ -61,7 +61,7 @@ export default {
 
     },
     computed: {
-      descuentos: function(){
+      descuentosItems: function(){
           return this.$store.state.user.descuentos;
       }
   },
