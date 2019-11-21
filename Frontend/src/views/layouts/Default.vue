@@ -57,19 +57,17 @@ export default {
       this.$router.push('/registro')
     },
     toLogout(){
-      this.$store.dispatch('setUserIsLogin', { flag: false })
+      this.$store.dispatch('logout')
       this.$router.push('/login')
     },
     toHome(){
       this.$router.push('/inicio')
     },
-    toNewProduct(){
-      this.$router.push('/productos/nuevo')
-    },
+    
   },
   computed:{
     isLogin(){
-      return this.$store.state.user.userIsLogin
+      return this.$store.state.user.status.loggedIn
     },
     checkRol(){
       return this.$store.state.user.rol

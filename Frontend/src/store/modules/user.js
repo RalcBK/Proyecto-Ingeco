@@ -1,10 +1,10 @@
 import { userService } from '@/services';
-import { router } from '@/router'
+import  router  from '@/router/index.js'
 
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
     ? { status: { loggedIn: true }, user }
-    : { status: {}, user: null };
+    : { status: { loggedIn: false }, user: null };
 
 const app = {
     state: initialState,
@@ -47,6 +47,7 @@ const app = {
                 .then(
                     user => {
                         commit('loginSuccess', user);
+                        router.push('/inicio')
                     },
                     error => {
                         commit('loginFailure', error);
@@ -54,14 +55,14 @@ const app = {
                     }
                 );
         },
-        register({ dispatch, commit }, { username, password, email }) {
-            commit('registerRequest', { username });
+        register({ dispatch, commit }, { obj }) {
+            commit('registerRequest', { obj });
 
-            userService.register(username, password, email)
+            userService.register(obj)
                 .then(
                     user => {
                         commit('registerSuccess', user);
-                        alert("Registro completado")
+                        router.push('/inicio')
                     },
                     error => {
                         commit('registerFailure', error);

@@ -20,7 +20,7 @@ function login(username, password) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({"username": username, "password":password})
+        body: JSON.stringify({"Email": username, "Contraseña":password})
     };
 
     /*var usertemp = {email: "asdfg@asdf.com",
@@ -37,37 +37,35 @@ function login(username, password) {
         resolve(usertemp);
     })*/
    
-    return fetch(`${config().apiUrlUser}/user/login`, requestOptions)
+    return fetch(`${config().apiUser}/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            // login successful if there's a jwt token in the response
-            if (user.enabled) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                user.rol = 2;
-                localStorage.setItem('user', JSON.stringify(user)); 
-            }
-
+            localStorage.setItem('user', JSON.stringify(user)); 
             return user;
         });
 }
-function register(username,password,email){
+function register(userobj){
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({ "email": email, "username": username, "password":password, "enabled": true })
+        body: JSON.stringify({
+            "Email": userobj.Email,
+            "Contraseña": userobj.Contraseña,
+            "Nombres": userobj.Nombres,
+            "Apellidos": userobj.Apellidos,
+            "FechaRegistro": userobj.FechaRegistro
+        })
     };
 
-    return fetch(`${config().apiUrlUser}/user`, requestOptions)
+    return fetch(`${config().apiUser}/signup`, requestOptions)
         .then(handleResponse)
         .then(user => {
-            // login successful if there's a jwt token in the response
             console.log(user)
 
             return user;
         });
 }
 function logout() {
-    // remove user from local storage to log user out
     localStorage.removeItem('user');
 }
 
@@ -76,9 +74,6 @@ function handleResponse(response) {
         const data = text && JSON.parse(text);
         if (!response.ok) {
             if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                //logout();
-                //location.reload(true);
                 console.log("401")
             }
 

@@ -9,10 +9,10 @@
             </v-toolbar>
             <v-card-text class="pb-0">
               <v-form>
-                <VTextFieldWithValidation rules="required|min:3" v-model="name" :counter="10" label="Nombre del responsable" />
-                <VTextFieldWithValidation rules="required|integer|length:10" v-model="ruc" :counter="10" label="R.U.C" />
                 <VTextFieldWithValidation rules="required|email" v-model="email" :counter="10" label="E-Mail" />
-                <VTextFieldWithValidation rules="required|min:6" v-model="password" :counter="10" label="Contraseña" />
+                <VTextFieldWithValidation type="password" rules="required|min:6" v-model="password" :counter="10" label="Contraseña" />
+                <VTextFieldWithValidation rules="required|min:3" v-model="name" :counter="10" label="Nombres" />
+                <VTextFieldWithValidation rules="required|min:3" v-model="lastname" :counter="10" label="Apellidos" />
               </v-form>
             </v-card-text> 
             <v-card-actions>
@@ -44,18 +44,24 @@ export default {
   },
   data: () => ({
     loading:false,
-    name : "",
     email: "",
     password:"",
-    ruc:"",
+    name : "",
+    lastname : "",
 
   }),
   methods: {
     async submit() {
-      this.loading = true
-      await this.$store.dispatch('setUserIsLogin', { flag: true })
-      this.loading = false
-      this.$router.push('/inicio')
+      let d = new Date();
+      let strFecha = (d.getMonth()+1).toString() + "-" + d.getDay().toString() + "-" + d.getFullYear().toString();
+      let obj = {
+            Email: this.email,
+            Contraseña: this.password,
+            Nombres: this.name,
+            Apellidos: this.lastname,
+            FechaRegistro: strFecha
+          }
+      await this.$store.dispatch('register', { obj: obj })
     }
   }
 };

@@ -40,17 +40,14 @@ export default {
   },
   data: () => ({
     loading: false,
-    name : "",
     email: "",
     password: "",
-    ruc: "",
   }),
   methods: {
     async submit() {
       this.loading = true
-      await this.$store.dispatch('setUserIsLogin', { flag: true })
+      await this.$store.dispatch('login', { username: this.email, password: this.password })
       this.loading = false
-      this.$router.push('/inicio')
     }
   }
 };
