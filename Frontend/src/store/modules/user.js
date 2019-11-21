@@ -120,6 +120,22 @@ const app = {
                     }
                 );
         },
+        updateClientes({ dispatch, commit }) {
+
+            userService.getClientes()
+                .then(
+                    items => {
+                        commit('addClientes', items);
+                        console.log("Clientes actualizadas")
+                        console.log(items)
+                    },
+                    error => {
+                        commit('registerFailure', error);
+                        alert("Error del servidor")
+
+                    }
+                );
+        },
         logout({ commit }) {
             userService.logout();
             commit('logout');
